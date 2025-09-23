@@ -32,18 +32,6 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    requestHistory: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Request",
-      },
-    ],
-    complaintHistory: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Complaint",
-      },
-    ],
   },
   {
     timestamps: true,
