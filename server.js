@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import authRoutes from "./routes/auth.route.js";
 import xeroxRoutes from "./routes/xerox.route.js";
+import requestRoutes from "./routes/request.route.js";
 
 import { connectDB } from "./libs/db.js";
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/xerox", xeroxRoutes);
+app.use("/api/request", requestRoutes);
 
 app.listen(PORT, () => {
   console.log(

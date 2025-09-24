@@ -1,3 +1,4 @@
+import e from "express";
 import Request from "../models/request.model.js";
 
 export const addRequest = async (req, res) => {
@@ -14,13 +15,20 @@ export const addRequest = async (req, res) => {
 
 export const getRequests = async (req, res) => {
   try {
-    const { userId}= req.params.id;
-    const { status, role } = req.query;
-    if (role === "xerox") {
-      const requests = await Request.find({ xeroxId: userId, status });
-      return res.status(200).json(requests);
+    const userId= req.user.id;
+    const { status } = req.query;
+    console.log("Fetching requests for userId:", userId, "with status:", status, "and role:", req.user.role);
+    const query = {};
+    if (req.user.role === "xerox") {
+      query.xeroxId = userId;
     }
-    const requests = await Request.find({ userId, status });
+    else {
+      query.userId = userId;
+    }
+    if(status) {
+      query.status = status;
+    }
+    const requests = await Request.find(query).sort({ createdAt: -1 });
     res.status(200).json(requests);
   } catch (error) {
     console.log("Error in getRequests controller", error.message);
