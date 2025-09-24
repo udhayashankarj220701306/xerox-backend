@@ -16,6 +16,17 @@ export const getProfile = async (req, res) => {
     }
 };
 
+export const createProfile = async (req,res) => {
+    try{
+        const xeroxProfile = new Xerox(req.body);
+        await xeroxProfile.save();
+        res.status(201).json(xeroxProfile);
+    } catch (error) {
+        console.log("Error in createProfile controller", error.message);
+        res.status(500).json({ message: error.message });
+    }
+}
+
 export const updateProfile = async (req, res) => {
     try {
         const xeroxId = req.params.id;
