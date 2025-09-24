@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import authRoutes from "./routes/auth.route.js";
+import xeroxRoutes from "./routes/xerox.route.js";
 
 import { connectDB } from "./libs/db.js";
 
@@ -17,6 +18,7 @@ app.use(express.json({ limit: "10mb" })); // allows you to parse the body of the
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/xerox", xeroxRoutes);
 
 app.listen(PORT, () => {
   console.log(
