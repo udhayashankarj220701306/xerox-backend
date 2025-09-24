@@ -14,7 +14,8 @@ export const addRequest = async (req, res) => {
 
 export const getRequests = async (req, res) => {
   try {
-    const { userId, status, role } = req.params.id;
+    const { userId}= req.params.id;
+    const { status, role } = req.query;
     if (role === "xerox") {
       const requests = await Request.find({ xeroxId: userId, status });
       return res.status(200).json(requests);
