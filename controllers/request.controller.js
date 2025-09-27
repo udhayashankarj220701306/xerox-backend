@@ -1,9 +1,30 @@
-import e from "express";
 import Request from "../models/request.model.js";
+import { uploadFileToBlob } from "./blob.controller.js";
 
 export const addRequest = async (req, res) => {
+  const files = req.files; // Access files from req.
+  console.log("Files received:", files);
+  if (files && files.length > 0) {
+    try {
+      const fileUrls = await Promise.all(
+        files.map((file) => uploadFileToBlob(file))
+      );
+      req.body.fileUrls = fileUrls; // Add file URLs to request body
+    } catch (error) {
+      console.log("Error uploading files", error.message);
+      return res.status(500).json({ message: "Error uploading files" });
+    }
+  } else {
+    return res.status(400).send("No files uploaded.");
+  }
   const request = req.body;
+  console.log("fileUrls:", req.body.fileUrls);
+  console.log("Request body:", request);
   try {
+    req.body.fileUrls.forEach((fileUrl, index) => {
+      console.log("request.files before:", request.files[index]);
+      request.files[index].file = fileUrl;
+    });
     const newRequest = new Request(request);
     await newRequest.save();
     res.status(201).json(newRequest);
