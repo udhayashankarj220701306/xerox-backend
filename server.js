@@ -27,6 +27,9 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/xerox", xeroxRoutes);
 app.use("/api/request", requestRoutes);
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
 
 // app.listen(PORT, () => {
 //   console.log(
