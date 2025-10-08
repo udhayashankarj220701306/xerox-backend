@@ -43,3 +43,16 @@ export const updateProfile = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
+export const getProfiles = async (req, res) => {
+  try {
+    const xeroxProfiles = await Xerox.find({});
+    if (!xeroxProfiles) {
+      return res.status(404).json({ message: "Xerox profile not found" });
+    } else {
+      res.status(200).json(xeroxProfiles);
+    }
+  } catch (error) {
+    console.log("Error in getProfile controller", error.message);
+    res.status(500).json({ message: error.message });
+  }
+};
