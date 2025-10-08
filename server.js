@@ -28,9 +28,11 @@ app.use("/api/auth", authRoutes);
 app.use("/api/xerox", xeroxRoutes);
 app.use("/api/request", requestRoutes);
 
-app.listen(PORT, () => {
-  console.log(
-    "Server is running on http://localhost:" + PORT
-  );
+// app.listen(PORT, () => {
+//   console.log(
+//     "Server is running on http://localhost:" + PORT
+//   );
   connectDB();
-});
+// });
+
+export  default app;
