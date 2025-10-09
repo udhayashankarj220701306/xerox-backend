@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
-    credentials: true, // This is the key change
+    //credentials: true, // This is the key change
     optionsSuccessStatus: 200,
   })
 );
