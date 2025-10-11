@@ -36,7 +36,8 @@ export const addRequest = async (req, res) => {
 
 export const getRequests = async (req, res) => {
   try {
-    const userId= req.user.id;
+    console.log("User making request:", req.user._id, "with role:", req.user.role);
+    const userId= req.user._id;
     const { status } = req.query;
     console.log("Fetching requests for userId:", userId, "with status:", status, "and role:", req.user.role);
     const query = {};
