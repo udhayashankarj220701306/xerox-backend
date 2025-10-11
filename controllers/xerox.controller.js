@@ -3,7 +3,9 @@ import Xerox from "../models/xerox.model.js";
 export const getProfile = async (req, res) => {
     try {
         const xeroxId = req.params.id;
-        const xeroxProfile = await Xerox.findOne({ xeroxId });
+        const xeroxProfile = await Xerox.findOne({ xeroxId }).populate(
+          "xeroxId"
+        );
         if (!xeroxProfile) {
             return res.status(404).json({ message: "Xerox profile not found" });
         }
@@ -45,7 +47,7 @@ export const updateProfile = async (req, res) => {
 }
 export const getProfiles = async (req, res) => {
   try {
-    const xeroxProfiles = await Xerox.find({});
+    const xeroxProfiles = await Xerox.find({}).populate("xeroxId");
     if (!xeroxProfiles) {
       return res.status(404).json({ message: "Xerox profile not found" });
     } else {

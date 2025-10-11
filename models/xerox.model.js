@@ -6,6 +6,10 @@ const xeroxSchema = new mongoose.Schema({
     ref: "User",
     required: [true, "shopid is required"],
   },
+  name:{
+    type: String,
+    required: [true, "Name is required"],
+  },
   rating: {
     type: Number,
     default: 0,
