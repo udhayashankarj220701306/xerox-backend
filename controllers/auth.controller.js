@@ -37,7 +37,7 @@ export const signup = async (req, res) => {
 	const { email, password, name } = req.body;
 	try {
 		const userExists = await User.findOne({ email });
-		console.log(userExists);
+		// console.log(userExists);
 
 		if (userExists) {
 			return res.status(400).json({ message: "User already exists" });
@@ -150,7 +150,7 @@ export const updateUserData = async (req,res)=>{
 	try {
 		const {id} = req.params;
 		const data = req.body;
-		// console.log(data);
+		// console.log("user update",data);
 		const user = await User.findByIdAndUpdate(id,data,{new:true});
 		res.status(200).json({user:user});
 	} catch (error) {
