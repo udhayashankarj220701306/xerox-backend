@@ -33,7 +33,8 @@ export const updateProfile = async (req, res) => {
     try {
         const xeroxId = req.params.id;
         const updates = req.body;
-        const xeroxProfile = await Xerox.findOneAndUpdate({ xeroxId }, updates, { new: true });
+        // console.log("updates:",updates);
+        const xeroxProfile = await Xerox.findByIdAndUpdate( xeroxId , updates, { new: true });
         if (!xeroxProfile) {
             return res.status(404).json({ message: "Xerox profile not found" });
         }
