@@ -31,16 +31,16 @@ const rateSchema = new mongoose.Schema({
     default: 0,
     required: [true, "Soft binding rate is required"],
   },
-  single:{
-    type: Number,
-    default: 0,
-    required: [true, "Single side rate is required"],
-  },
-  double:{
-    type: Number,
-    default: 0,
-    required: [true, "Double side rate is required"],
-  }
+  // single:{
+  //   type: Number,
+  //   default: 0,
+  //   required: [true, "Single side rate is required"],
+  // },
+  // double:{
+  //   type: Number,
+  //   default: 0,
+  //   required: [true, "Double side rate is required"],
+  // }
 
 });
 
