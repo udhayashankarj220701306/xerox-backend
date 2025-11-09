@@ -61,6 +61,7 @@ export const signup = async (req, res) => {
       email: user.email,
       location: user.location,
       role: user.role,
+      isLocked: user.isLocked,
     });
   } catch (error) {
     console.log("Error in signup controller", error.message);
@@ -85,6 +86,7 @@ export const login = async (req, res) => {
         email: user.email,
         location: user.location,
         role: user.role,
+        isLocked: user.isLocked,
       });
     } else {
       res.status(400).json({ message: "Invalid email or password" });

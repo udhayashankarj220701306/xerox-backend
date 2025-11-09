@@ -64,6 +64,10 @@ const requestScema = new mongoose.Schema(
       default: "pending",
     },
     files: [fileSchema],
+    rate: {
+      type: Number,
+      required: [true, "Rate for the request is required."],
+    },
   },
   {
     timestamps: true,
